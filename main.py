@@ -22,6 +22,9 @@ async def read_root() -> dict:
 
 # define function that handles "GET" request with endpoint "/world"
 # list all countries
-@app.get("/world")
-async def read_countries() -> dict:
-    return {"result": data_country}
+@app.get("/world/city/{name}")
+   async def read_city(name: str) -> dict:
+       for row in data_city:
+           if row["Name"].lower() == name.lower():
+               return {"result": row}
+       return {"result": {}}
